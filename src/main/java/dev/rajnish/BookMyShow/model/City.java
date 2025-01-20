@@ -13,7 +13,7 @@ import lombok.Setter;
 public class City extends BaseModel {
 
     private String name;
+    private int pincode;
     @OneToMany
-    private List<Theater> theaters;
-    
+    private List<Theater> theaters;    
 }
