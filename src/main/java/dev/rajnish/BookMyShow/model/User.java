@@ -10,17 +10,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="BMS_USER")
 public class User extends BaseModel {
 
     private String name;
 
     @Column(unique = true)
-    private Long mobileNo;
+    private String email;
 
     private String password;
 
     @OneToMany
-    private List<Ticket> bookings;
+    private List<Ticket> tickets;
     
 }

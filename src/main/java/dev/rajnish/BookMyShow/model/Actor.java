@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Actor {
+public class Actor extends BaseModel {
 
     private String name;
     @ManyToMany
-    private List<Movie> staredMovies;    
+    private List<Movie> movies;    
 }

@@ -17,12 +17,13 @@ import lombok.Setter;
 public class Movie extends BaseModel {
 
     private String name;
+    private String description;
 
     @ManyToMany
     private List<Actor> actors;
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private List<MovieFearures> movieFearures;
+    private List<MovieFearures> movieFeatures;
     
 }
