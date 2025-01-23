@@ -7,5 +7,7 @@ import dev.rajnish.BookMyShow.model.Actor;
 
 @Repository
 public interface ActorRepository extends JpaRepository<Actor,Integer>{
+
+    public Actor findActorByName(String name);
     
 }
