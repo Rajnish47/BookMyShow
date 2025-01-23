@@ -7,5 +7,6 @@ import dev.rajnish.BookMyShow.model.Movie;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie,Integer> {
-    
+
+    public Movie findMovieByName(String name);    
 }
