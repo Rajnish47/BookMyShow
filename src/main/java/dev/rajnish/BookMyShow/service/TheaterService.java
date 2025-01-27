@@ -20,9 +20,7 @@ public class TheaterService {
 
     public Theater addTheater(String name,String address,int cityId)
     {
-        Theater theater = new Theater();
-        theater.setName(name);
-        theater.setAddress(address);
+        Theater theater = new Theater(name,address);
         Theater savedTheater = theaterRepository.save(theater);
 
         City city = cityService.getCityById(cityId);
@@ -32,5 +30,29 @@ public class TheaterService {
         cityService.saveCity(city);
 
         return savedTheater;
-    }    
+    }
+
+    public Theater updateTheaterDetails(Theater theater)
+    {
+        return theaterRepository.save(theater);
+    }
+
+    public Theater getTheater(int id)
+    {
+        return theaterRepository.findById(id).get();
+    }
+    
+    public void removeTheater(int cityId,int theaterId)
+    {
+        City city = cityService.getCityById(cityId);
+        List<Theater> theaters = city.getTheaters();
+        if(theaters!=null)
+        {
+            Theater theater = getTheater(theaterId);
+            theaters.remove(theater);
+            city.setTheaters(theaters);
+            cityService.saveCity(city);
+            theaterRepository.deleteById(theaterId);
+        }
+    }
 }

@@ -5,8 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.rajnish.BookMyShow.dto.TheaterRequestDTO;
-import dev.rajnish.BookMyShow.model.Theater;
+import dev.rajnish.BookMyShow.exception.InvalidDetailsException;
 import dev.rajnish.BookMyShow.service.TheaterService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -39,5 +43,28 @@ public class TheaterController {
 
         return null;
     }
-    
+
+    @GetMapping("/theater/{id}")
+    public ResponseEntity getTheater(@PathVariable("id") int theaterId)
+    {
+        if(theaterId<=0)
+        {
+            throw new InvalidDetailsException("Invalid theater id");
+        }
+
+        return ResponseEntity.ok(theaterService.getTheater(theaterId));
+    }
+
+    @DeleteMapping("/theater/delete/{city_id}/{theater_id}")
+    public ResponseEntity deleteTheater(@PathVariable("city_id") int cityId,@PathVariable("theater_id") int theaterId)
+    {
+        if(theaterId<=0)
+        {
+            throw new InvalidDetailsException("Invalid theater id");
+        }
+
+        theaterService.removeTheater(cityId,theaterId);
+
+        return ResponseEntity.ok("Theater has been deleted");
+    }    
 }
