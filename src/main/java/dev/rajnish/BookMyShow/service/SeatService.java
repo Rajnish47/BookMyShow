@@ -50,5 +50,10 @@ public class SeatService {
         auditoriumService.updateAuditoriumSpecs(auditorium);
 
         return savedSeat;        
-    }    
+    }
+    
+    public Seat getSeatById(int id)
+    {
+        return seatRepository.findById(id).get();
+    }
 }
