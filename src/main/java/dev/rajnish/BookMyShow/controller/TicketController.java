@@ -18,13 +18,6 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
-
-    @GetMapping("/hello")
-    public ResponseEntity greet()
-    {
-        String greet = ticketService.greet();
-        return ResponseEntity.ok(greet);
-    }
     
     @PostMapping("/ticket")
     public ResponseEntity postMethodName(@RequestBody BookTicketRequestDTO bookTicketRequestDTO) throws Exception {
