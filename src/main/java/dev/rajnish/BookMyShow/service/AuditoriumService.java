@@ -59,6 +59,16 @@ public class AuditoriumService {
         return auditorium;        
     }
 
+    public Auditorium getAuditoriumById(int id)
+    {
+        return auditoriumRepository.findById(id).get();
+    }
+
+    public Auditorium updateAuditoriumSpecs(Auditorium auditorium)
+    {
+        return auditoriumRepository.save(auditorium);
+    }
+
     public void deleteAuditorium(int id)
     {
         auditoriumRepository.deleteById(id);
